@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shahzaibjaved-portfolio.netlify.app/sitemap.xml

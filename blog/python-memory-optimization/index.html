@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python Memory Optimization & Garbage Collection | Shahzaib Javed</title>
+    <meta name="description"
+        content="Master Python memory management: Learn how reference counting, GC cycles, __slots__, and generator expressions reduce memory footprint.">
+    <link rel="canonical" href="https://shahzaibjaved-portfolio.netlify.app/blog/python-memory-optimization/">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans antialiased">
+
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-xl font-mono font-bold text-blue-400 hover:text-blue-300 transition">&lt;Shahzaib.py
+                /&gt;</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="/" class="text-slate-400 hover:text-blue-400 transition">Home</a>
+                <a href="/projects/" class="text-slate-400 hover:text-blue-400 transition">Projects</a>
+                <a href="/blog/" class="text-blue-400 font-semibold">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow">
+        <div class="mb-8">
+            <div class="flex items-center space-x-3 text-xs font-mono text-cyan-400 mb-3">
+                <span>PYTHON BACKEND</span>
+                <span>•</span>
+                <span>AUGUST 2026</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-4">
+                Python Memory Optimization & Garbage Collection Strategies
+            </h1>
+            <p class="text-slate-400 text-lg">
+                High-throughput backend apps demand efficient RAM usage. Here is how CPython manages reference counting,
+                generations, and custom allocation to prevent memory leaks.
+            </p>
+        </div>
+
+        <hr class="border-slate-800 my-8">
+
+        <article class="prose prose-invert max-w-none space-y-8 text-slate-300">
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">1. Reference Counting & Generational GC</h2>
+                <p>CPython tracks object lifecycles primarily through reference counts. When an object's count hits
+                    zero, it's immediately deallocated. Cyclic references are handled by generation-based collectors.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">2. Optimizing RAM with `__slots__`</h2>
+                <p>By default, classes use a dynamic dictionary (`__dict__`) for attributes. Defining
+                    <code>__slots__</code> replaces this with fixed-size arrays, reducing memory overhead significantly
+                    when dealing with millions of objects.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">3. Streaming with Generators</h2>
+                <p>Avoid loading massive datasets into memory at once. Use <code>yield</code> expressions to process
+                    large chunks or rows lazily item-by-item.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-500 py-8 text-center text-xs">
+        <p>&copy; 2026 Shahzaib Javed. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

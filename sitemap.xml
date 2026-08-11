@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/about/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/projects/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Listing Section -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Article 1 -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/fastapi-performance-optimization/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 2 -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/technical-seo-for-developers/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 3 -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/python-memory-optimization/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 4 -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/async-microservices-fastapi-redis/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 5 -->
+  <url>
+    <loc>https://shahzaibjaved-portfolio.netlify.app/blog/rest-api-security-best-practices/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

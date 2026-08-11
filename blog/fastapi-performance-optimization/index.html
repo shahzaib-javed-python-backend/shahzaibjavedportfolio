@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>FastAPI Performance Optimization & Scaling Guide | Shahzaib Javed</title>
+    <meta name="description"
+        content="Learn proven strategies to optimize async database queries, Gunicorn worker configs, and response serialization in FastAPI applications for maximum throughput.">
+    <link rel="canonical" href="https://shahzaibjaved-portfolio.netlify.app/blog/fastapi-performance-guide/">
+
+    <!-- Bing Verification Meta Tag -->
+    <meta name="msvalidate.01" content="CD533BE7FD33C283F94FF75848D1BCA8" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://shahzaibjaved-portfolio.netlify.app/blog/fastapi-performance-guide/">
+    <meta property="og:title" content="FastAPI Performance Optimization & Scaling Strategies">
+    <meta property="og:description"
+        content="In-depth guide on async connection pooling, ORM query tuning, and Gunicorn/Uvicorn worker management in FastAPI.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Article JSON-LD Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "FastAPI Performance Optimization & Scaling Strategies",
+    "description": "Proven strategies to optimize async database queries, worker configurations, and response serialization in high-concurrency FastAPI applications.",
+    "author": {
+      "@type": "Person",
+      "name": "Shahzaib Javed",
+      "url": "https://shahzaibjaved-portfolio.netlify.app/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Shahzaib Javed"
+    },
+    "datePublished": "2026-08-11",
+    "dateModified": "2026-08-11",
+    "mainEntityOfPage": "https://shahzaibjaved-portfolio.netlify.app/blog/fastapi-performance-guide/"
+  }
+  </script>
+</head>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-xl font-mono font-bold text-blue-400 hover:text-blue-300 transition">&lt;Shahzaib.py
+                /&gt;</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="/" class="text-slate-400 hover:text-blue-400 transition">Home</a>
+                <a href="/projects/" class="text-slate-400 hover:text-blue-400 transition">Projects</a>
+                <a href="/blog/" class="text-blue-400 font-semibold">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Body -->
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow">
+
+        <!-- Meta Info -->
+        <div class="mb-8">
+            <div class="flex items-center space-x-3 text-xs font-mono text-cyan-400 mb-3">
+                <span>PYTHON & FASTAPI</span>
+                <span>•</span>
+                <span>AUGUST 2026</span>
+                <span>•</span>
+                <span>6 MIN READ</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-4">
+                FastAPI Performance Benchmarks & Scaling Strategies for Modern APIs
+            </h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                FastAPI is renowned for its high execution speed, powered by Starlette and Pydantic. However,
+                misconfigured database pools and synchronous blockages can degrade throughput under heavy traffic. Here
+                is a battle-tested framework for optimizing FastAPI backend services.
+            </p>
+        </div>
+
+        <hr class="border-slate-800 my-8">
+
+        <!-- Content Sections -->
+        <article class="prose prose-invert max-w-none space-y-8 text-slate-300 leading-relaxed">
+
+            <!-- Section 1 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">1. Asynchronous Database Connection Pooling</h2>
+                <p class="mb-4">
+                    A common performance bottleneck in Python web services is running blocking synchronous ORM calls
+                    inside async endpoint handlers. When using async SQLAlchemy or Tortoise ORM, ensure that you
+                    leverage asynchronous connection pooling properly.
+                </p>
+                <div
+                    class="bg-slate-900 border border-slate-800 rounded-lg p-4 font-mono text-xs text-green-400 overflow-x-auto">
+                    <code>
+            # Recommended Async Session Engine<br>
+            from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession<br>
+            from sqlalchemy.orm import sessionmaker<br><br>
+            DATABASE_URL = "postgresql+asyncpg://user:pass@localhost/dbname"<br>
+            engine = create_async_engine(DATABASE_URL, pool_size=20, max_overflow=10, pool_pre_ping=True)
+          </code>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">2. Optimizing Pydantic Serialization</h2>
+                <p>
+                    Pydantic V2 delivers substantial performance improvements due to its Rust core engine. To maximize
+                    serialization speeds when returning large array response payloads, utilize
+                    <strong>`response_model_exclude_unset=True`</strong> and minimize deeply nested validation schemas
+                    where raw dictionaries suffice.
+                </p>
+            </section>
+
+            <!-- Section 3 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-3">3. Production Worker Configuration with Gunicorn +
+                    Uvicorn</h2>
+                <p class="mb-4">
+                    Running a single Uvicorn process in production limits execution to a single CPU core. Deploying with
+                    Gunicorn as a process manager allows you to scale worker processes based on available CPU cores.
+                </p>
+                <div
+                    class="bg-slate-900 border border-slate-800 rounded-lg p-4 font-mono text-xs text-cyan-400 overflow-x-auto">
+                    <code>
+            gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+          </code>
+                </div>
+            </section>
+
+            <!-- Summary / Author Card -->
+            <section class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 mt-10">
+                <h3 class="text-white font-bold text-lg mb-2">Written by Shahzaib Javed</h3>
+                <p class="text-slate-400 text-sm">
+                    Python Backend Specialist focusing on high-performance REST APIs, database architecture, and
+                    Technical SEO optimizations.
+                </p>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-500 py-8 text-center text-xs">
+        <p>&copy; 2026 Shahzaib Javed. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
